@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Shop</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    
+    .header {
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .header h1 {
+      font-family: "Arial", sans-serif;
+      font-size: 48px;
+      color: #333;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header p {
+      font-family: "Helvetica", sans-serif;
+      font-size: 24px;
+      color: #888;
+      margin: 10px 0 0;
+      padding: 0;
+    }
+
+    .header span {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .header span:hover {
+      background-color: #555;
+    }
+
+    nav {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav ul {
+        background-color: #333;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+    
+    nav ul li {
+      
+      display: inline;
+      margin-right: 10px;
+    }
+    
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+    }
+    
+    section {
+      padding: 20px;
+    }
+    
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+    
+    footer p {
+      margin: 0;
+    }
+    
+    .container {
+      position: relative;
+      width: 400px;
+      height: 200px;
+      background-color: #f0f0f0;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .truck {
+      position: absolute;
+      top: 50%;
+      left: -100px;
+      width: 100px;
+      height: 50px;
+      background-color: #333;
+      transition: left 2s linear;
+    }
+    
+    .person {
+      position: absolute;
+      top: 50%;
+      left: -100px;
+      width: 50px;
+      height: 100px;
+      background-color: #f00;
+      transition: left 2s linear;
+    }
+  </style>
+</head>
+<body>
+  <h1>Online Shop</h1>
+  
+  <form action="process_payment.php" method="POST">
+    <h2>Order Details</h2>
+    
+    <label for="item">Item:</label>
+    <input type="text" id="item" name="item" required>
+    
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price" required>
+    
+    <h2>Payment Information</h2>
+    
+    <label for="card_number">Card Number:</label>
+    <input type="text" id="card_number" name="card_number" required>
+    
+    <label for="expiry_date">Expiry Date:</label>
+    <input type="text" id="expiry_date" name="expiry_date" required>
+    
+    <label for="cvv">CVV:</label>
+    <input type="text" id="cvv" name="cvv" required>
+    
+    <h2>Delivery Options</h2>
+    
+    <label for="delivery">Delivery:</label>
+    <input type="radio" id="delivery" name="delivery_option" value="delivery" required>
+    
+    <label for="pickup">Pickup:</label>
+    <input type="radio" id="pickup" name="delivery_option" value="pickup" required>
+    
+    <br><br>
+    
+    <input type="submit" value="Place Order">
+  </form>
+  
+  <div class="container">
+    <div class="truck"></div>
+  </div>
+  
+  <div class="container">
+    <div class="person"></div>
+  </div>
+  
+  <script>
+    const truckElement = document.querySelector('.truck');
+    const personElement = document.querySelector('.person');
+    
+    // Animate the truck or person based on delivery option
+    const deliveryRadio = document.querySelector('#delivery');
+    deliveryRadio.addEventListener('change', function() {
+      if (this.checked) {
+        truckElement.style.left = '100%';
+        personElement.style.left = '-100px';
+      }
+    });
+    
+    const pickupRadio = document.querySelector('#pickup');
+    pickupRadio.addEventListener('change', function() {
+      if (this.checked) {
+        truckElement.style.left = '-100px';
+        personElement.style.left = '100%';
+      }
+    });
+  </script>
+</body>
+</html>
